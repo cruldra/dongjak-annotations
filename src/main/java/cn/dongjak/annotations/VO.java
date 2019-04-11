@@ -11,5 +11,21 @@ public @interface VO {
 
     String[] excludes() default {};
 
-    String[] fields() default {};
+    Field[] fields() default {};
+
+    @Target({ElementType.FIELD})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Exclude {
+    }
+
+
+    @Target({ElementType.ANNOTATION_TYPE})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Field {
+
+        String name();
+
+        String expression() default "";
+    }
+
 }

@@ -1,22 +1,31 @@
-package cn.dongjak.annotations;
+package cn.dongjak.annotations.vo;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.TYPE)
+@Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE})
 @Retention(RetentionPolicy.SOURCE)
 public @interface VO {
     String packageName() default "";
+
+    String sceneName() default "";
 
     String[] excludes() default {};
 
     Field[] fields() default {};
 
+    /**
+     * 仅包含声明在 {@link #fields()}中的字段
+     * @return
+     */
+    boolean onlyIncludeDefinedFields() default false;
+
     @Target({ElementType.FIELD})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Exclude {
+        String[] in() default {};
     }
 
 

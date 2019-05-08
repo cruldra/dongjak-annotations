@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE})
-@Retention(RetentionPolicy.SOURCE)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface VO {
     String packageName() default "";
 
@@ -16,8 +16,11 @@ public @interface VO {
 
     Field[] fields() default {};
 
+    boolean usedExtjsGrid() default false;
+
     /**
      * 仅包含声明在 {@link #fields()}中的字段
+     *
      * @return
      */
     boolean onlyIncludeDefinedFields() default false;

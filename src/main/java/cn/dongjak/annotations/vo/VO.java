@@ -40,5 +40,4 @@ public @interface VO {
 
         String expression() default "";
     }
-
 }
